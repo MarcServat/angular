@@ -2,14 +2,14 @@
   "name": "angular",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "dependencies": {},
   "devDependencies": {
-    "server-lite": "^1.0.0"
+    "lite-server": "^2.3.0"
   },
   "scripts": {
     "start": "npm run lite",
-    "lite": "server-lite",
+    "lite": "lite-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marc",
