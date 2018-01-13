@@ -1,0 +1,17 @@
+{
+  "name": "angular",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "server-lite": "^1.0.0"
+  },
+  "scripts": {
+    "start": "npm run lite",
+    "lite": "server-lite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marc",
+  "license": "ISC"
+}
