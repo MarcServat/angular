@@ -12,6 +12,7 @@
       </md-card-content>
 
       <md-card-actions>
+        <button md-button (click)="goBack()">BACK</button>
         <button md-button>LIKE</button>
         <button md-button>SHARE</button>
       </md-card-actions>
@@ -19,7 +20,7 @@
   </div>
 
   <div fxFlex="40">
-    <h1>Comments</h1>
+    <h1 *ngIf="dish">Comments</h1>
     <md-list *ngIf="dish">
       <md-list-item *ngFor="let comment of dish.comments">
         <div class="md-list-item-text" layout="column">
