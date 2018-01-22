@@ -12,7 +12,7 @@ export class LeaderService {
   }
 
   getFeatureLeader() {
-    return LEADERS.filter((leader) => (leader.featured);
+    return LEADERS.filter((leader) => (leader.featured));
   }
 
 }
