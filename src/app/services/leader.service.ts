@@ -7,13 +7,12 @@ export class LeaderService {
 
   constructor() { }
 
-  getLeaders() :Leader[] {
+  getLeaders(): Leader[] {
     return LEADERS;
   }
 
-  // getLeader(id: Number): Leader {
-  //   const a = LEADERS.filter((leader) => leader.id === id);
-  //   return a[0].name
-  // }
+  getFeatureLeader() {
+    return LEADERS.filter((leader) => (leader.featured);
+  }
 
 }
