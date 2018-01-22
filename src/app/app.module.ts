@@ -1,10 +1,11 @@
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '@angular/material';
+import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import 'hammerjs';
-
+// Components
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
@@ -13,11 +14,11 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-
+// Services
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
-
+// Routing
 import { AppRoutingModule } from './app-routing/app-routing.module'
 
 @NgModule({
