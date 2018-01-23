@@ -7,15 +7,15 @@ export class PromotionService {
 
   constructor() { }
 
-  getDishes(): Promotion[] {
+  getPromotions(): Promotion[] {
     return PROMOTIONS;
   }
 
-  getDish(id: number): Promotion {
+  getPromotion(id: number): Promotion {
     return PROMOTIONS.filter((promotion) => (promotion.id === id))[0];
   }
 
-  getFeaturePromotion(): Promotion {
+  getFeaturedPromotion(): Promotion {
     return PROMOTIONS.filter((promotion) => (promotion.featured))[0];
   }
 }
