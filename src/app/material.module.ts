@@ -12,9 +12,13 @@ import {
   MatDialogModule,
   MatDialogRef,
   MatCheckbox,
+  MatSlideToggleModule,
+  MatSelectModule
 } from '@angular/material';
 
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms'; 
+ 
 
 @NgModule({
   imports: [
@@ -27,7 +31,10 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatListModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ],
   exports: [
     MatButtonModule,
@@ -39,7 +46,10 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatListModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }
