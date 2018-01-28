@@ -14,6 +14,9 @@ import { DishService } from '../services/dish.service'
 export class DishdetailComponent implements OnInit {
 
   dish: Dish;
+  dishIds: number[];
+  prev: number;
+  next: number;
 
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
