@@ -36,6 +36,42 @@
         </div>
       </mat-list-item>
     </mat-list>
+    <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+      <div [hidden]="commentForm.invalid">
+        <mat-list>
+          <mat-list-item>
+            <div class="mat-list-item-text" layout="column">
+              <p mat-line>{{commentForm.value.comment }}</p>
+              <p mat-line>{{commentForm.value.rating }} Stars</p>
+              <p mat-line>--{{commentForm.value.author}}</p>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <p>
+        <mat-form-field class="full-width" dividerColor="{{formErrors.author ? 'warn' : 'primary'}}">
+          <input matInput formControlName="author" placeholder="Name" type="text" required>
+          <mat-hint>
+            <span [hidden]="!(formErrors.author)">
+              {{formErrors.author}}</span>
+          </mat-hint>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-slider formControlName="rating" [max]="5" [min]="0" [step]="1" [thumb-label]="commentForm.value.rating" [tick-interval]="1">
+        </mat-slider>
+      </p>
+      <p>
+        <mat-form-field class="full-width">
+          <textarea matInput formControlName="comment" placeholder="Your Comment" rows=12></textarea>
+          <mat-hint>
+            <span [hidden]="!(formErrors.comment)">
+              {{formErrors.comment}}</span>
+          </mat-hint>
+        </mat-form-field>
+      </p>
+      <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
+    </form>
   </div>
   <div [hidden]="dish">
     <mat-spinner></mat-spinner>

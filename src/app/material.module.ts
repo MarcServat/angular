@@ -15,7 +15,8 @@ import {
   MatSlideToggleModule,
   MatSelectModule,
   MatProgressSpinnerModule,
-  MatGridListModule
+  MatGridListModule,
+  MatSliderModule
 } from '@angular/material';
 
 import { FormsModule } from '@angular/forms';
@@ -38,7 +39,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSlideToggleModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSliderModule
   ],
   exports: [
     MatButtonModule,
@@ -55,7 +57,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSlideToggleModule,
     MatSelectModule,
     MatProgressSpinnerModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSliderModule
   ]
 })
 export class MaterialModule { }
