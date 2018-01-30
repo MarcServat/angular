@@ -62,7 +62,7 @@ export class ContactComponent implements OnInit {
       contacttype: 'None',
       message: ''
     });
-
+    console.log(this.feedbackForm)
     this.feedbackForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
 
@@ -76,7 +76,7 @@ export class ContactComponent implements OnInit {
     for (const field in this.formErrors) {
       this.formErrors[field] = '';
       const control = form.get(field);
-      if (!control && control.dirty && !control.valid) {
+      if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
         for (const key in control.errors) {
           this.formErrors[field] += messages[key] + ' ';
@@ -87,7 +87,6 @@ export class ContactComponent implements OnInit {
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
