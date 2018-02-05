@@ -23,6 +23,7 @@ export class DishdetailComponent implements OnInit {
   prev: number;
   next: number;
   commentForm: FormGroup;
+  errMess: string;
   formErrors = {
     'author': '',
     'comment': ''
@@ -54,7 +55,7 @@ export class DishdetailComponent implements OnInit {
       .subscribe((dish) => {
         this.dish = dish;
         this.setPrevNext(dish.id)
-      });
+      }, errmess => this.errMess = <any>errmess);
   }
 
   createForm() {
@@ -65,7 +66,7 @@ export class DishdetailComponent implements OnInit {
     });
     this.commentForm.valueChanges
       .subscribe(data => this.onValuechanged(data))
-
+    
     this.onValuechanged()
   }
 
