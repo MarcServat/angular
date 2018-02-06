@@ -6,6 +6,7 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http'
+import { RestangularModule, Restangular } from 'ngx-restangular';
 import 'hammerjs';
 // Components
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 // Routing
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { baseURL } from './shared/baseurl';
+import { RestangularConfigFactory } from './shared/restConfig';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { baseURL } from './shared/baseurl';
     FlexLayoutModule,
     AppRoutingModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   entryComponents: [
     LoginComponent
