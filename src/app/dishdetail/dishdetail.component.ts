@@ -8,22 +8,39 @@ import { Comment } from '../shared/comment';
 import { DishService } from '../services/dish.service';
 
 import 'rxjs/Rx'
+import { CommaExpr } from '@angular/compiler/src/output/output_ast';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
-  styleUrls: ['./dishdetail.component.scss']
+  styleUrls: ['./dishdetail.component.scss'],
+  animations: [
+    trigger('visibility', [
+      state('shown', style({
+        transform: 'scale(1.0)',
+        opacity: 1
+      })),
+      state('hidden', style({
+        transform: 'scale(0.5)',
+        opacity: 0
+      })),
+      transition('* => *', animate('0.5s ease-in-out'))
+      ])
+  ]
 })
 
 export class DishdetailComponent implements OnInit {
 
   dish: Dish;
+  dishcopy: null;
   comment: Comment;
-  dishIds: number[];
+  dishIds: {} | number[];
   prev: number;
   next: number;
   commentForm: FormGroup;
   errMess: string;
+  visibility: 'shown';
   formErrors = {
     'author': '',
     'comment': ''
@@ -42,7 +59,7 @@ export class DishdetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
-    @Inject('BaseURL') private BaseURL) {
+    @Inject('baseURL') private BaseURL) {
     this.createForm()
   }
 
@@ -51,10 +68,15 @@ export class DishdetailComponent implements OnInit {
       .subscribe((dishIds) => this.dishIds = dishIds)
 
     this.route.params
-      .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
+      .switchMap((params: Params) => {
+        this.visibility = 'hidden';
+        return this.dishservice.getDish(+params['id']);
+      })
       .subscribe((dish) => {
         this.dish = dish;
-        this.setPrevNext(dish.id)
+        this.dishcopy = dish;
+        this.setPrevNext(dish.id);
+        this.visibility = 'shown';
       }, errmess => this.errMess = <any>errmess);
   }
 
@@ -66,7 +88,7 @@ export class DishdetailComponent implements OnInit {
     });
     this.commentForm.valueChanges
       .subscribe(data => this.onValuechanged(data))
-    
+
     this.onValuechanged()
   }
 
@@ -88,7 +110,9 @@ export class DishdetailComponent implements OnInit {
   onSubmit() {
     this.comment = this.commentForm.value;
     this.comment['date'] = new Date().toISOString();
-    this.dish.comments.push(this.comment);
+    this.dishcopy.comments.push(this.comment);
+    this.dishcopy.save()
+      .subscribe(dish => this.dish = dish);
     this.commentForm.reset({
       author: '',
       rating: 5,

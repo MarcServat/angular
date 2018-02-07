@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
+import { RestangularModule, Restangular } from 'ngx-restangular';
+
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +18,7 @@ export class MenuComponent implements OnInit {
   @Inject('baseURL') private BaseURL) { }
 
   ngOnInit() {
-    this.dishService.getDishes()
+   return this.dishService.getDishes()
       .subscribe((dishes) => this.dishes = dishes,
         errmess => this.errMess = <any>errmess);
   }

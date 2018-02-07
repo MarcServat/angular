@@ -18,8 +18,7 @@ export class DishService {
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getDishes(): Observable<Dish[]> {
-    const res = this.restangular.all('dishes').getList();
-    return res.destination.value.getList()
+    return this.restangular.all('dishes').getList();
   }
 
   getDish(id: number): Observable<Dish> {
@@ -34,6 +33,6 @@ export class DishService {
   getDishIds(): Observable<number[]> {
     return this.getDishes()
       .map(dishes => { return dishes.map(dish => dish.id) })
-      .catch(error => { return error; });
+      // .catch(error => { return error; });
   }
 }
