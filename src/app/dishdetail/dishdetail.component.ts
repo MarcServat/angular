@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { RestangularModule, Restangular } from 'ngx-restangular';
 import { Dish } from '../shared/dish';
 import { Comment } from '../shared/comment';
 import { DishService } from '../services/dish.service';
@@ -55,6 +55,7 @@ export class DishdetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
+    private restangular: Restangular,
     @Inject('baseURL') private BaseURL) {
     this.createForm()
   }
@@ -107,7 +108,7 @@ export class DishdetailComponent implements OnInit {
     this.comment = this.commentForm.value;
     this.comment['date'] = new Date().toISOString();
     this.dishcopy.comments.push(this.comment);
-    this.dishcopy.save()
+    this.restangular.copy(this.dishcopy).save()
       .subscribe(dish => this.dish = dish);
     this.commentForm.reset({
       author: '',
