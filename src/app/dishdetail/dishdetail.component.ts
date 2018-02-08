@@ -9,28 +9,34 @@ import { DishService } from '../services/dish.service';
 
 import 'rxjs/Rx'
 import { CommaExpr } from '@angular/compiler/src/output/output_ast';
-import { visibility } from '../animations/app.animation';
+import { visibility, flyInOut, expand } from '../animations/app.animation';
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
   animations: [
-    visibility()
-  ]
+    visibility(),
+    flyInOut(),
+    expand()
+  ],
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  }
 })
 
 export class DishdetailComponent implements OnInit {
 
   dish: Dish;
-  dishcopy: null;
+  dishcopy: Dish | null;
   comment: Comment;
-  dishIds: {} | number[];
+  dishIds: number[];
   prev: number;
   next: number;
   commentForm: FormGroup;
   errMess: string;
-  visibility: 'shown';
+  visibility: string;
   formErrors = {
     'author': '',
     'comment': ''
@@ -59,14 +65,14 @@ export class DishdetailComponent implements OnInit {
 
     this.route.params
       .switchMap((params: Params) => {
-        this.visibility = 'hidden';
+        this.visibility = "hidden";
         return this.dishservice.getDish(+params['id']);
       })
       .subscribe((dish) => {
         this.dish = dish;
         this.dishcopy = dish;
         this.setPrevNext(dish.id);
-        this.visibility = 'shown';
+        this.visibility = "shown";
       }, errmess => this.errMess = <any>errmess);
   }
 
