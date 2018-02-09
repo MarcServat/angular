@@ -15,11 +15,11 @@ import { flyInOut, expand } from '../animations/app.animation';
   host: {
     '[@flyInOut]': 'true',
     'style': 'display: block;'
-    },
-    animations: [
-      flyInOut(),
-      expand()
-    ]
+  },
+  animations: [
+    flyInOut(),
+    expand()
+  ]
 })
 export class HomeComponent implements OnInit {
 
@@ -42,12 +42,12 @@ export class HomeComponent implements OnInit {
     this.promotionservice.getFeaturedPromotion()
       .subscribe((promotion) => {
         this.promotion = promotion;
-      });
+      }, errmess => this.dishErrMess = <any>errmess);
 
     this.leaderservice.getFeaturedLeader()
       .subscribe((leader) => {
         this.leader = leader;
-      });
+      }, errmess => this.dishErrMess = <any>errmess);
   }
 
 }
