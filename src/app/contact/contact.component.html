@@ -93,7 +93,7 @@
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="feedbackForm.invalid">Submit</button>
     </form>
-    <div *ngIf="feedbackCopy">
+    <div *ngIf="feedbackCopy" [@expand]>
       <h4>Your submission</h4>
       <p>First Name: {{feedbackCopy.firstname}}</p>
       <p>Last Name: {{feedbackCopy.lastname}}</p>
